@@ -37,7 +37,61 @@ namespace MVCStructureApp.Repository
                 throw e;
             }
         }
+        public Employee GetEmployee(int id)
+        {
+            try
+            {
+                Employee list = dbContext.Employees.Where(x => x.EmpId == id).SingleOrDefault();
 
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public int DeleteEmployee(int id)
+        {
+            try
+            {
+                Employee data = dbContext.Employees.Where(x => x.EmpId == id).SingleOrDefault();
+
+                if (data != null)
+                {
+                    dbContext.Employees.Remove(data);
+                    return dbContext.SaveChanges();
+                }
+                else
+                    return 0;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public int Update(Employee model)
+        {
+                var data = dbContext.Employees.FirstOrDefault(x => x.EmpId == model.EmpId);
+
+                // Checking if any such record exist  
+                if (data != null)
+                {
+                    data.EmpId = model.EmpId;
+                    data.Name = model.Name;
+                    data.Gender = model.Gender;
+                    data.DepartmentId = model.DepartmentId;
+                    data.Department = model.Department;
+                    data.SalaryId = model.SalaryId;
+                    data.Salary = model.Salary;
+                    data.StartDate = model.StartDate;
+                    data.Description = model.Description;
+                    return dbContext.SaveChanges();
+                }
+                else
+                    return 0;
+            
+        }
         public bool RegisterEmployee(RegisterRequestModel employee)
         {
 

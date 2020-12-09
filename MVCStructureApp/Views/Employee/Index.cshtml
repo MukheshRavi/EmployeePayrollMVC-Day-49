@@ -66,8 +66,7 @@
         @Html.DisplayFor(modelItem => item.StartDate)
     </td>
     <td>
-        <a href="@Url.Action("Edit",new { item.EmpId,item.Name,item.Gender
-                    ,item.Department,item.SalaryId,item.StartDate,item.Description})" class="btn btn-success">Edit</a> |
+        <a href="@Url.Action("Edit",new { item.EmpId })" class="btn btn-success">Edit</a> |
         <a href="@Url.Action("Delete",new { item.EmpId })" class="btn btn-danger">Delete</a>
     </td>
 </tr>            }

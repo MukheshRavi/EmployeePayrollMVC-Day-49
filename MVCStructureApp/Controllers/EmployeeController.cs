@@ -1,4 +1,5 @@
-﻿using MVCStructureApp.Models.Common;
+﻿using MVCStructureApp.Models;
+using MVCStructureApp.Models.Common;
 using MVCStructureApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -30,13 +31,45 @@ namespace MVCStructureApp.Controllers
             {
                 result = employeeRepository.RegisterEmployee(employee);
             }
-            ModelState.Clear();
+            //ModelState.Clear();
 
             if (result == true)
             {
                 return RedirectToAction("Index");
             }
             return View(employee);
+        }
+        [HttpGet]
+        public ActionResult Edit(Employee model)
+        {
+            Employee emp = employeeRepository.GetEmployee(model.EmpId);
+
+            return View(emp);
+        }
+        public ActionResult Delete(Employee model)
+        {
+            Employee emp = employeeRepository.GetEmployee(model.EmpId);
+
+            return View(emp);
+        }
+        [HttpPost]
+        public ActionResult DeleteEmployee(Employee model)
+        {
+            int result = employeeRepository.DeleteEmployee(model.EmpId);
+            if (result != 0)
+                return RedirectToAction("Index");
+            else
+                return View("Delete",result);
+        }
+        [HttpPost]
+        public ActionResult Update(Employee model)
+        {
+           int data=employeeRepository.Update(model);
+            if (data != 0)
+                return RedirectToAction("Index");
+            else
+            return View("Edit");
+         
         }
     }
 }

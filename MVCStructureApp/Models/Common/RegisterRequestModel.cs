@@ -10,19 +10,20 @@ namespace MVCStructureApp.Models.Common
     {
         public int EmpId { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required]
+        [StringLength(20,ErrorMessage ="Name max length is 20 characters")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required]
         public string Gender { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required]
         public string Department { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required]
         public string SalaryId { get; set; }
 
-        [Required(ErrorMessage = "Required")]
+        [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime StartDate { get; set; }
 
