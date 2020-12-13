@@ -85,5 +85,27 @@ namespace MVCStructureApp.Repository
                 throw e;
             }
         }
+        public int Update(Employee model)
+        {
+            var data = dbContext.Employees.FirstOrDefault(x => x.EmpId == model.EmpId);
+
+            // Checking if any such record exist  
+            if (data != null)
+            {
+                data.EmpId = model.EmpId;
+                data.Name = model.Name;
+                data.Gender = model.Gender;
+                data.DepartmentId = model.DepartmentId;
+                data.Department = model.Department;
+                data.SalaryId = model.SalaryId;
+                data.Salary = model.Salary;
+                data.StartDate = model.StartDate;
+                data.Description = model.Description;
+                return dbContext.SaveChanges();
+            }
+            else
+                return 0;
+
+        }
     }
 }
