@@ -51,7 +51,21 @@ namespace MVCStructureApp.Controllers
                 return RedirectToAction("Index");
             else
                 return View("Edit");
+        }
+        public ActionResult Delete(Employee model)
+        {
+            Employee emp = employeeRepository.GetEmployee(model.EmpId);
 
+            return View(emp);
+        }
+        [HttpPost]
+        public ActionResult DeleteEmployee(Employee model)
+        {
+            int result = employeeRepository.DeleteEmployee(model.EmpId);
+            if (result != 0)
+                return RedirectToAction("Index");
+            else
+                return View("Delete", result);
         }
     }
 }
