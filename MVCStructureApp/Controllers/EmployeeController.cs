@@ -38,5 +38,20 @@ namespace MVCStructureApp.Controllers
             }
             return View(employee);
         }
+        public ActionResult Edit(Employee model)
+        {
+            Employee emp = employeeRepository.GetEmployee(model.EmpId);
+
+            return View(emp);
+        }
+        public ActionResult Update(Employee model)
+        {
+            int data = employeeRepository.Update(model);
+            if (data != 0)
+                return RedirectToAction("Index");
+            else
+                return View("Edit");
+
+        }
     }
 }
