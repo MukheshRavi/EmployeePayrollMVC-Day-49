@@ -12,12 +12,10 @@ namespace MVCStructureApp.Controllers
     public class EmployeeController : Controller
     {
         EmployeeRepository employeeRepository = new EmployeeRepository();
-
         // GET: Employee
         public ActionResult Index()
         {
             List<EmployeeViewModel> list = employeeRepository.GetEmployees();
             return View(list);
-        }
-    }
-}
+        } 
+    }}

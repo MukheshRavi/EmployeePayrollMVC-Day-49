@@ -37,5 +37,18 @@ namespace MVCStructureApp.Repository
                 throw e;
             }
         }
+        public Employee GetEmployee(int id)
+        {
+            try
+            {
+                Employee list = dbContext.Employees.Where(x => x.EmpId == id).SingleOrDefault();
+
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
